@@ -52,10 +52,17 @@ public class Nave : MonoBehaviour
             transform.Translate(Vector3.left * speed);
         }
 
+        // Detectar cuando se presiona Left Shift
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             acelerando = true;
-            // cambiar la velocidad a que vaya el doble de rapido   speed * 3;
+            speed = maxSpeed;  // Aumentar velocidad
+        }
+        // Detectar cuando se suelta Left Shift
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            acelerando = false;
+            speed = minSpeed;  // Volver a velocidad normal
         }
     }
 
