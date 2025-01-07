@@ -28,8 +28,8 @@ public class Nave : MonoBehaviour
 
     void FixedUpdate()
     {
-         applyRotation();
-         applyMovement();
+        applyRotation();
+        applyMovement();
 
     }
 
@@ -50,6 +50,12 @@ public class Nave : MonoBehaviour
         } else if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * speed);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            acelerando = true;
+            // cambiar la velocidad a que vaya el doble de rapido   speed * 3;
         }
     }
 
