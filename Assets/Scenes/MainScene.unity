@@ -7259,13 +7259,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1917391421932174, guid: 1eb47ee7fb4e0224482d77ed61559671, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1437171904}
-    - targetCorrespondingSourceObject: {fileID: 1917391421932174, guid: 1eb47ee7fb4e0224482d77ed61559671, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1437171905}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb47ee7fb4e0224482d77ed61559671, type: 3}
 --- !u!1001 &698007752
 PrefabInstance:
@@ -7739,11 +7733,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a76742b3f592d834ca1e03ad08301998, type: 3}
---- !u!1 &730083004 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1917391421932174, guid: 1eb47ee7fb4e0224482d77ed61559671, type: 3}
-  m_PrefabInstance: {fileID: 696259670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &736428580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4756262757966062, guid: 1ce022d65e1e7b84d9e5ae4a479c39ba, type: 3}
@@ -16610,34 +16599,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4855783266589030, guid: 1eb47ee7fb4e0224482d77ed61559671, type: 3}
   m_PrefabInstance: {fileID: 696259670}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1437171904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730083004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c37590c4bbe7d428503931f958e70b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emissionIntensity: 1.5
-  emissionColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1437171905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730083004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c37590c4bbe7d428503931f958e70b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emissionIntensity: 1.5
-  emissionColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1453527801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23654,7 +23615,7 @@ GameObject:
   - component: {fileID: 54788935077002273}
   m_Layer: 0
   m_Name: NaveEspacial
-  m_TagString: Untagged
+  m_TagString: Nave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24328,7 +24289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alturaBalanceo: 0.5
   velocidadBalanceo: 2
-  velocidadRotacionBase: 50
+  velocidadRotacion: 50
   distanciaMaxima: 10
 --- !u!65 &65180916066013267
 BoxCollider:

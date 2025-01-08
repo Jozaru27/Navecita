@@ -4,49 +4,51 @@ using UnityEngine;
 
 public class Moneda : MonoBehaviour
 {
-    public float alturaBalanceo = 0.5f;  // Altura máxima del balanceo
-    public float velocidadBalanceo = 2f;  // Velocidad del balanceo
-    public float velocidadRotacionBase = 50f;  // Velocidad mínima de rotación
-    public float distanciaMaxima = 10f;  // Distancia máxima donde empieza a aumentar la rotación
+    public float alturaBalanceo = 0.5f;   // Cuánto sube y baja la moneda
+    public float velocidadBalanceo = 2f;  
+    public float velocidadRotacion = 100f; 
+    public float distanciaMaxima = 35f;   // Distancia donde la rotación empieza a aumentar
 
-    private Vector3 posicionInicial;
+    private Vector3 posicionInicial;    // Posición de la Moneda
+    private Transform nave;         // Prefab de la nave
+
 
     void Start()
     {
-        posicionInicial = transform.position;
+        posicionInicial = transform.position; // Guarda la posición de la Moneda
+        nave = GameObject.FindWithTag("Nave").transform; // Busca el GameObject con el Tag Nave
+
+        // CÓDIGO ADICIONAL PARA ORGANIZAR LOS GAME OBJECTS
+        // Agrupar monedas bajo ==OBJETOS MONEDAS==
+
+        // Busca el Game Object Vacío Padre
+        Transform contenedor = GameObject.Find("==OBJETOS MONEDAS==")?.transform;
+
+        // Hace que la moneda sea hija del Game Object Padre
+        transform.parent = contenedor;
+
+        // Renombra la moneda automáticamente
+        int numMonedas = contenedor.childCount;
+        gameObject.name = "Moneda " + numMonedas;
     }
+
 
     void Update()
     {
-        AplicarBalanceo();
-        AplicarRotacion();
-    }
-
-    void AplicarBalanceo()
-    {
-        // Movimiento de balanceo en el eje Y usando Seno para crear un movimiento suave
+        // Balanceo suave en el eje Y (de arriba a abajo)
         float nuevoY = posicionInicial.y + Mathf.Sin(Time.time * velocidadBalanceo) * alturaBalanceo;
         transform.position = new Vector3(transform.position.x, nuevoY, transform.position.z);
-    }
 
-    void AplicarRotacion()
-    {
-        // Obtener la distancia entre la nave (jugador) y la moneda
-        GameObject nave = GameObject.FindWithTag("Player");
+        // Si la distancia entre la NAVE y la MONEDA disminuyen, acelera la velocidad de rotación
+        float distancia = Vector3.Distance(transform.position, nave.position);
+        float rotacionActual = velocidadRotacion;
 
-        if (nave != null)
+        if (distancia < distanciaMaxima)
         {
-            float distancia = Vector3.Distance(transform.position, nave.transform.position);
-            float velocidadRotacion = velocidadRotacionBase;
-
-            // Aumentar la velocidad de rotación si el jugador se acerca
-            if (distancia < distanciaMaxima)
-            {
-                velocidadRotacion += (distanciaMaxima - distancia) * 10f;  // Aumentar la rotación cuanto más cerca esté
-            }
-
-            // Aplicar rotación
-            transform.Rotate(Vector3.up * velocidadRotacion * Time.deltaTime);
+            rotacionActual += (distanciaMaxima - distancia) * 35f;
         }
+
+        // Rotar sobre el eje Z
+        transform.Rotate(Vector3.up * rotacionActual * Time.deltaTime);
     }
 }

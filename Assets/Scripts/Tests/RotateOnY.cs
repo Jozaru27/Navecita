@@ -6,7 +6,6 @@ public class RotateOnY : MonoBehaviour
 {
     public float rotationSpeed = 1f;
 
-    // Start is called before the first frame update.
     void Start()
     {
 

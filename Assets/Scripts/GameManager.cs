@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnMonedas(); // Llama a la función de Spawnear monedas
+        SpawnMonedas();
     }
 
     void Update()
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Hace aparecer prefabs de Moneda
+    // Método Principal para Spawnear Monedas en la Escena
     void SpawnMonedas()
     {
         // Dividir los puntos de Spawn en Segmentos
@@ -25,21 +25,25 @@ public class GameManager : MonoBehaviour
         List<Transform> puntosSegundoSegmento = puntosSpawn.GetRange(25, 15); // Siguientes 15 puntos (3 siguientes aros)
         List<Transform> puntosTercerSegmento = puntosSpawn.GetRange(40, 10);  // Últimos 10 puntos (2 últimos aros)
 
-        // Spawnear monedas según las reglas establecidas en la práctica
+        // Generar monedas, pasándole a la función a la que llama el segmento y la cantidad de monedas.
         SpawnMonedasEnSegmento(puntosPrimerSegmento, 15);  // 15 monedas en primeros 5 aros (primer segmento)
         SpawnMonedasEnSegmento(puntosSegundoSegmento, 5);  // 5 monedas en los siguientes 3 aros (segundo Segmento)
-        // No se spawnean monedas en los últimos 2 aros
     }
 
-    // Spawnea x monedas en cada segmento
+
+    // Método Auxiliar para Spawnear Monedas en Puntos Aleatorios dentro de Segmentos
     void SpawnMonedasEnSegmento(List<Transform> puntos, int cantidad)
     {
+        // HashSet almacena los índices utilizados - Evita instanciar más de una moneda en el mismo punto
         HashSet<int> indicesUsados = new HashSet<int>();
 
+        // Mientras que no se hayan colocado la cantidad deseada de monedas.
         while (indicesUsados.Count < cantidad)
         {
+            // Selecciona un índice aleatorio dentro del rango de puntos disponibles
             int indiceAleatorio = Random.Range(0, puntos.Count);
 
+            // En caso de que el índice seleccionado no haya sido seleccionado anteriormente, crea el prefab de la moneda y lo añade al HashSet.
             if (!indicesUsados.Contains(indiceAleatorio))
             {
                 Instantiate(monedaPrefab, puntos[indiceAleatorio].position, Quaternion.identity);
@@ -47,20 +51,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    // void SpawnMonedasEnSegmento(List<Transform> puntos, int cantidad)
-    // {
-    //     List<Transform> copiaPuntos = new List<Transform>(puntos); // Copia de la lista original
-
-    //     for (int i = 0; i < cantidad; i++)
-    //     {
-    //         if (copiaPuntos.Count == 0)
-    //             break;
-
-    //         int indiceAleatorio = Random.Range(0, copiaPuntos.Count);
-    //         Instantiate(monedaPrefab, copiaPuntos[indiceAleatorio].position, Quaternion.identity);
-    //         copiaPuntos.RemoveAt(indiceAleatorio);  // Elimina el punto usado
-    //     }
-    // }
-
 }
