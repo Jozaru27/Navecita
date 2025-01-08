@@ -52,17 +52,31 @@ public class Nave : MonoBehaviour
             transform.Translate(Vector3.left * speed);
         }
 
-        // Detectar cuando se presiona Left Shift
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        // -- ACELERAR CON LSHIFT --
+
+        // // CUANDO SE PULSE LA TECLA SHIFT (!!! No siempre detecta que se pulse o se suelte Left Shift)
+        // if (Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     acelerando = true;  // Cambia el booleano de acelerando a activo
+        //     speed = maxSpeed;  // Aumenta la velocidad a la velocidad máxima
+        // }
+        // // CUANDO SE SUELTE LA TECLA SHIFT
+        // if (Input.GetKeyUp(KeyCode.LeftShift))
+        // {
+        //     acelerando = false; // Cambia el booleano de acelerando a desactivado
+        //     speed = minSpeed;  // Disminuye la velocidad a la velocidad mínima (normal)
+        // }
+
+        // Si LShift está pulsado, aumenta la velocidad y cambia el booleano de acelerando a verdadero. Si no lo está, disminuye la velocidad y cambia el booleano a falso.
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             acelerando = true;
-            speed = maxSpeed;  // Aumentar velocidad
+            speed = maxSpeed;
         }
-        // Detectar cuando se suelta Left Shift
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
             acelerando = false;
-            speed = minSpeed;  // Volver a velocidad normal
+            speed = minSpeed;
         }
     }
 
