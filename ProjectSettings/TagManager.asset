@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Habitaculo
   - Nave
+  - Aro
+  - Moneda
   layers:
   - Default
   - TransparentFX

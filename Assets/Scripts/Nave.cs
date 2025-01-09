@@ -19,6 +19,12 @@ public class Nave : MonoBehaviour
 
     private bool acelerando = false;
 
+    public AroManager aroManager;
+
+    public UIManager uiManager; 
+
+    public bool aroAtravesado = false; 
+
     private void Awake()
     {
         colorOriginal = motorDerecho.material.color;
@@ -106,6 +112,34 @@ public class Nave : MonoBehaviour
             transform.eulerAngles.x + sumarY,
             transform.eulerAngles.y + sumarX,
             transform.eulerAngles.z);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Si el objeto con el que la nave colisiona tiene el tag "Aro" y no ha atravesado ese aro aún
+        if (other.CompareTag("Aro"))
+        {
+            aroManager.AroPasado(other.gameObject);
+        }
+
+        // Si el objeto con el que la nave colisiona tiene el tag "Moneda"
+        if (other.CompareTag("Moneda"))
+        {
+            // Destruye la moneda
+            Destroy(other.gameObject);
+
+            // Llama al UIManager para sumar una moneda
+            uiManager.SumarMoneda();
+        }
+    }
+
+    // Resetear el flag cuando ya no estamos tocando el aro
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Aro"))
+        {
+            aroAtravesado = false; 
+        }
     }
 
 }

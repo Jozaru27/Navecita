@@ -7,9 +7,13 @@ public class GameManager : MonoBehaviour
     public GameObject monedaPrefab;  // Prefab de la moneda
     public List<Transform> puntosSpawn = new List<Transform>();  // Lista que recoge los 50 Puntos de spawn de monedas
 
+    public UIManager uiManager; // Para el Manager del Canva
+    public AroManager aroManager; // Para el Manager de los Aros
+
     void Start()
     {
         SpawnMonedas();
+        uiManager.totalAros = aroManager.aros.Count;  
     }
 
     void Update()
