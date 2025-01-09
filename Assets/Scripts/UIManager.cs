@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         panelFinal.SetActive(false);
         ActualizarUI();
 
